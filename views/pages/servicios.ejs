@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        
+        <div class="jumbotron">
+            <h1>Servicios</h1>
+            <table id="example" class="table table-striped">
+                <thead >
+                    <th scope="col">Nombre</th>
+                    <th scope="col">descripcion</th>
+                    <th scope="col">duracionM</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">categoria</th>
+                    
+                </thead>
+                <tbody>
+                    <% servicios.forEach(function(s) { %>
+                    <tr>
+                        <td><%= s.nombre %></td>
+                        <td><%= s.descripcion %></td>
+                        <td><%= s.duracionMinutos %></td>
+                        <td><%= s.precio %></td>
+                        <td><%= s.categoria %></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.bootstrap5.js"></script>
+    <script>
+        new DataTable('#example');
+    </script>
+</body>

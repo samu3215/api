@@ -1,13 +1,16 @@
 const modeloServicio = require('../models/servicio.model');
 
 exports.listar = async (req,res) =>{
-    try{
+    try {
         const servicios = await modeloServicio.find();
-        res.json(servicios);
-    }
-    catch (error){
-        res.status(500).json({error: error.message})
-    }
+        
+        res.render('pages/servicios', {
+            servicios:servicios
+        });
+    
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
 }
 
 exports.buscarID = async (req,res) =>{

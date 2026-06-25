@@ -5,7 +5,7 @@ exports.listar = async (req,res)=>{
   try {
     const clientes = await modeloCliente.find();
     
-    res.render('pages/index3', {
+    res.render('pages/clientes', {
         clientes:clientes
     });
 
