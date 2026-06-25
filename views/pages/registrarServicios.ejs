@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        
+        
+        <div class="card-body p-4">
+            <h3>Registar Servicios</h3>
+        
+            <form action="/api/v1/servicios" method="POST">
+                                
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre del servicio</label>
+                    <input type="text" class="form-control" id="nombre" name="nom" placeholder="corte cr7" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="descripcion" name="des" placeholder="barato" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="duracion" class="form-label">Duracion</label>
+                    <input type="number" class="form-control" id="duracion" name="dur" placeholder="10">
+                </div>
+
+                <div class="mb-4">
+                    <label for="telefono" class="form-label">precio</label>
+                    <input type="number" class="form-control" id="duracion" name="pre" placeholder="1000">
+                </div>
+
+
+                <div class="mb-4">
+                    <label for="cat" class="form-label">Categoría</label>
+                    <select class="form-select" id="cat" name="cat" required>
+                        <option value="" disabled selected>Selecciona una categoría...</option>
+                        <option value="corte">Corte</option>
+                        <option value="tintura">Tintura</option>
+                        <option value="peinado">Peinado</option>
+                        <option value="tratamiento">Tratamiento</option>
+                        <option value="barberia">Barbería</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+
+
+
+                
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="/api/v1/servicios" class="btn btn-outline-secondary me-md-2">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar Servicios</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.bootstrap5.js"></script>
+</body>

@@ -7,5 +7,6 @@ router.get('/servicios/:nombre', servicioController.buscarID);
 router.post('/servicios', servicioController.registrar)
 router.put('/servicios/:nombre', servicioController.actualizar)
 router.delete('/servicios/:nombre', servicioController.eliminar);
+router.get('/registrarServicios',servicioController.formularioServicios);
 
 module.exports = router;    

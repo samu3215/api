@@ -68,7 +68,7 @@ exports.formulario = async (req,res)=>{
   try {
     const clientes = await modeloCliente.find();
     
-    res.render('pages/registrar');
+    res.render('pages/registrarClientes');
 
   } catch (error) {
     res.status(500).json({ error: error.message });

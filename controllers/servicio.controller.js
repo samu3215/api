@@ -72,3 +72,15 @@ exports.actualizar = async (req,res) =>{
         res.status(500).json({error: error.message})
     }
 }
+
+
+exports.formularioServicios = async (req,res) =>{
+    try{
+        const servicios = await modeloServicio.find();
+        res.render('pages/registrarServicios')
+    }
+    catch (error){
+        res.status(500).json({error:error.message})
+    }
+}
+
