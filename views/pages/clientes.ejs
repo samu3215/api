@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../partials/head'); %>
 </head>
+
 <body class="container">
 
 
@@ -11,38 +13,170 @@
     </header>
 
     <main>
-        
+
         <div class="jumbotron">
             <h1>clientes</h1>
             <table id="example" class="table table-striped">
-                <thead >
+                <thead>
                     <th scope="col">Nombre</th>
                     <th scope="col">email</th>
                     <th scope="col">telefono</th>
-                    
+                    <th scope="col">Acciones</th>
+
                 </thead>
                 <tbody>
                     <% clientes.forEach(function(c) { %>
-                    <tr>
-                        <td><%= c.nombre %></td>
-                        <td><%= c.email %></td>
-                        <td><%= c.telefono %></td>
-                        
-                    </tr>
-                    <% }); %>
+                        <tr>
+                            <td>
+                                <%= c.nombre %>
+                            </td>
+                            <td>
+                                <%= c.email %>
+                            </td>
+                            <td>
+                                <%= c.telefono %>
+                            </td>
+                            <td>
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalVer" onclick="modalVer('<%=c.nombre%>', '<%= c.email%>','<%=c.telefono%>')">Ver
+                                    detalle
+                                    </button>
+                               <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditar" onclick="modalEditar('<%=c.nombre%>', '<%= c.email%>','<%=c.telefono%>')">Editar</button>
+                               <button  type="button" class="btn btn-danger">Eliminar</button>
+
+                            </td>
+                        </tr>
+                        <!-- The Modal -->
+                        <div class="modal" id="modalVer">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Detalles del cliente</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        
+                                            <div class="mb-3 mt-3">
+                                                <label for="nombre">Nombre</label>
+                                                <p id="nombreV" ></p>
+                                            </div>
+                                            <div class="mb-3 mt-3">
+                                                <label for="email">Email</label>
+                                                <p id="emailV" ></p>
+                                                
+                                            </div>
+                                            <div class="mb-3 mt-3">
+                                                <label for="tel">Telefono</label>
+                                                <p id="telV"></p>
+                                                
+                                            </div>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal" id="modalEditar">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Editar Cliente</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <form action="/api/v1/clientes" method="POST">
+                                            <div class="mb-3 mt-3">
+                                                <label for="nombre">Nombre:</label>
+                                                <input type="text" class="form-control" id="nombreE"
+                                                    placeholder="Ingrese Nombre" name="nombre">
+                                            </div>
+                                            <div class="mb-3 mt-3">
+                                                <label for="email">Email:</label>
+                                                <input type="email" class="form-control" id="emailE"
+                                                    placeholder="Ingrese email" name="email" readonly>
+                                            </div>
+                                            <div class="mb-3 mt-3">
+                                                <label for="tel">Tel:</label>
+                                                <input type="text" class="form-control" id="telE"
+                                                    placeholder="Ingrese telefono" name="telefono">
+                                            </div>
+
+
+                                            <div class="form-check mb-3">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="remember">
+                                                    Remember me
+                                                </label>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <% }); %>
                 </tbody>
             </table>
         </div>
+
+
     </main>
 
-    
+
     <footer>
         <%- include('../partials/footer'); %>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.bootstrap5.js"></script>
+    <script>
+        function modalVer(nombre, email, telefono) {
+            
+            document.getElementById('nombreV').textContent = nombre;
+            document.getElementById('emailV').textContent = email;
+            document.getElementById('telV').textContent = telefono;
+
+        }
+
+
+        function modalEditar(nombre, email, telefono) {
+            document.getElementById('modalEditar').style.display = 'block';
+            document.getElementById('nombreE').value = nombre;
+            document.getElementById('emailE').value = email;
+            document.getElementById('telE').value = telefono;
+
+        }
+    </script>
+
+    
+
     <script>
         new DataTable('#example');
     </script>

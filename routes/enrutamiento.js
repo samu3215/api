@@ -8,5 +8,6 @@ router.post('/clientes', clienteController.registrar)
 router.put('/clientes/:correo', clienteController.actualizar)
 router.delete('/clientes/:correo', clienteController.eliminar)
 router.get('/registrar', clienteController.formulario)
+router.get('/', clienteController.home)
 
 module.exports = router;

@@ -31,7 +31,7 @@ exports.registrar = async (req,res)=>{
         telefono: req.body.telefono
     }
     const clientes = await modeloCliente.insertOne(clienteNuevo);
-    res.json(clientes);
+    res.redirect('/api/v1/clientes');
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -58,7 +58,7 @@ exports.actualizar = async (req,res)=>{
 exports.eliminar = async (req,res)=>{
   try {
     const clientes = await modeloCliente.findOneAndDelete({email:req.params.correo});
-    res.json(clientes);
+    res.redirect('/clientes');
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -75,6 +75,15 @@ exports.formulario = async (req,res)=>{
   }
 }
 
+exports.home = async (req,res)=>{
+  try {
+    
+    res.render('pages/about');
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
 
 
